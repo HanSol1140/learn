@@ -81,3 +81,16 @@
 // 13 ~ 14시: 2번
 // 15 ~ 16시: 1번
 // 23 ~ 24시: 1번
+
+// 문제
+// function solution(players, m, k) {
+//     var answer = 0;
+//     return answer;
+// }
+
+
+// 풀이
+function solution(players, m, k) {
+    var answer = 0;
+    return answer;
+}
