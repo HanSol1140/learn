@@ -9,7 +9,7 @@ const Options = {
     reconnectPeriod: 1000, // 재연결 간격(ms)
     connectTimeout: 30 * 1000, // 연결 타임아웃(ms)
 };
-var client = mqtt.connect('mqtt://192.168.0.230:1883', Options);
+var client = mqtt.connect('mqtt://192.168.0.5:1883', Options);
 // var client = mqtt.connect('mqtt://127.0.0.1:1883');
 
 // 일반 메세지 전송
