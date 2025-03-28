@@ -3,7 +3,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@SpringBootApplication
+// 다른패키지 참조
+@SpringBootApplication(
+		scanBasePackages = {
+				"com.baeksoo.shop",
+				"com.apple.shop"     // 추가
+		}
+)
 public class ShopApplication {
 
 	public static <T> void functionTest(T a) {
