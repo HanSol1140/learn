@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 
 // .env 사용
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true, // DB 스키마 엔티티 따라 자동변경 => 개발에서만 사용
       // logging: true, // SQL 쿼리로깅
     }),
+    UserModule,
     // 다른 모듈들...
     // 예: UserModule, ProductModule 등
   ],
