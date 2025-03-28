@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import * as fs from 'fs';
 
 async function bootstrap() {
+  // https 인증서
   const httpsOptions = {
     key: fs.readFileSync("./https/private.key.pem"),
     cert: fs.readFileSync("./https/domain.cert.pem")
