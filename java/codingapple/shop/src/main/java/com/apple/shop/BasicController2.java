@@ -13,20 +13,20 @@ import java.util.Date;
 @Controller
 public class BasicController {
     // 접속테스트
-    @GetMapping("/")
+    @GetMapping("/2")
     @ResponseBody
     String hello() {
-        return "안녕하쇼";
+        return "안녕하쇼2";
     }
 
     // 정적파일 제공해보기
-    @GetMapping("/page")
+    @GetMapping("/page2")
     String hello2() {
         return "index.html";
     }
 
     // 시간 보여주기
-    @GetMapping("/date")
+    @GetMapping("/date2")
     @ResponseBody
 //    String hello3() {
 //        var date = LocalDate.now().toString();
