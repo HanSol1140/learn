@@ -2,12 +2,12 @@ var express = require('express');
 var mqtt = require('mqtt');
 var app = express();
 
-var client = mqtt.connect('mqtt://192.168.0.44:1883');
+var client = mqtt.connect('mqtt://192.168.0.8:1883');
 
 
 client.on('connect', function () {
     // 여기에 구독명
-    client.subscribe('test/topic', function (err) {
+    client.subscribe('LoadCellServer', function (err) {
         if (!err) {
         console.log('Connected to MQTT broker');
         }
