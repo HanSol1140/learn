@@ -27,3 +27,21 @@ C:\Program Files\mosquitto
 <시작, 재시작>
 net stop mosquitto
 net start mosquitto
+
+<WSS 연결>
+    mosquitto.conf 수정
+    listener 1883
+    listener 8083
+    protocol websockets
+    certfile C:\Program Files\mosquitto\https\domain.cert.pem
+    keyfile C:\Program Files\mosquitto\https\private.key.pem
+
+
+    <!--
+        각 listener 블록은 listener 선언 이후부터
+        다음 listener 선언 전까지의 설정만 적용되므로,
+        1883 포트는 영향을 받지 않습니다.
+     -->
+
+     
+</WSS>
