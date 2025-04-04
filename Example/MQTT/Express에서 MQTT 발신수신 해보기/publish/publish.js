@@ -1,3 +1,4 @@
+// subscribe Test
 const fs = require('fs');
 var express = require('express');
 var mqtt = require('mqtt');
@@ -16,7 +17,6 @@ var client = mqtt.connect('mqtt://192.168.0.210:1883', Options);
 client.on('connect', function () {
     console.log('Connected to MQTT broker');
 });
-
 client.on('error', function (err) {
     console.log('MQTT Error: ', err);
 });
@@ -29,14 +29,44 @@ client.on('reconnect', function () {
     console.log('MQTT client is trying to reconnect');
 });
 
+
 var message = {
     tableNumber: 1,
     cleaningRobotState: false
 }
 
 // client.publish('temperature', JSON.stringify(message));
-client.publish('test', "asdf");
+client.publish('test', "asㅁㄴㄹㄴㅁㅇㄹㄴㅁㅇㄹdf");
+client.publish('test', "asㅁㄴㄹㄴㅁㅇㄹㄴㅁㅇㄹdf");
+client.publish('test', "asㅁㄴㄹㄴㅁㅇㄹㄴㅁㅇㄹdf");
+client.publish('test', "asㅁㄴㄹㄴㅁㅇㄹㄴㅁㅇㄹdf");
 
+
+
+var client2 = mqtt.connect('wss://nanonix.help:8083'); // 웹소켓 연결 사용
+// var client2 = mqtt.connect('ws://192.168.0.210:8083', Options); // 웹소켓 연결 사용
+client2.on('connect', function () {
+    client2.publish('websocket_test', 'Hello from WebSocket!');
+    client2.publish('websocket_test', 'Hello from WebSocket!');
+    client2.publish('websocket_test', 'Hello from WebSocket!');
+    client2.publish('websocket_test', 'Hello from WebSocket!');
+});
+client2.on('error', function (err) {
+    console.log('MQTT Error: ', err);
+});
+
+client2.on('offline', function () {
+    console.log('MQTT client2 is offline');
+});
+
+client2.on('reconnect', function () {
+    console.log('MQTT client2 is trying to reconnect');
+});
+
+
+// app.listen(8081, function () {
+//     console.log('Subscribe Server ON'); 
+// });
 // // 오디오 전송
 //     var filePath = './Voice.wavFUckyo'; 
 
