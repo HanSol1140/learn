@@ -11,24 +11,30 @@ const Options = {
     connectTimeout: 30 * 1000, // 연결 타임아웃(ms)
 };
 
-var client = mqtt.connect('mqtt://192.168.0.210:1883', Options);
+var client = mqtt.connect('mqtt://192.168.0.19:1883', Options);
 
 
 client.on('connect', function () {
     // 여기에 구독명
     console.log("1883 MQTT 연결");
-    client.subscribe('test', function (err) {
+    client.subscribe('controller', function (err) {
         if (!err) {
             console.log('Connected to MQTT broker');
         }
     });
+    client.subscribe('gripper')
 
 });
 
 
 client.on('message', function (topic, message) {
     // message is Buffer
-    console.log(message.toString());
+    if(topic == "gripper"){
+      console.log("gripper : " + message.toString())
+    };
+    if(topic == "controller"){
+      console.log("controller : " + message.toString())
+    };
 });
 
 
