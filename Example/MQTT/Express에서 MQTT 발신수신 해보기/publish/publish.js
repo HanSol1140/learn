@@ -36,7 +36,7 @@ var message = {
 }
 
 // client.publish('temperature', JSON.stringify(message));
-client.publish('gripper', "move/10000");
+client.publish('gripper', "sethome");
 setTimeout(() => {
     client.publish('gripper', "pos9");
 }, 1000)
@@ -49,7 +49,9 @@ setTimeout(() => {
 setTimeout(() => {
     client.publish('gripper', "home");
 }, 4000)
-
+setInterval(() => {
+    client.publish("gripper", "pos9");
+},500);
 
 
 var client2 = mqtt.connect('wss://nanonix.help:8083'); // 웹소켓 연결 사용
