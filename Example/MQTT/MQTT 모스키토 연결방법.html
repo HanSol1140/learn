@@ -3,22 +3,41 @@ https://mosquitto.org/download/
 해당 페이지에서 모스키토 다운로드 후 설치
 
 
-<모스키토 .conf 설정>
+<mosquitto.conf 설정>
+WINDOW의 경우 C://Program Files/mosquitto/mosquitto.conf 파일 수정
+
 <!-- listener 수정 -->
+<!-- # listener port로 검색해서 아래 수정하면됨 -->
     # listener port-number [ip address/host name/unix socket path]
     #listener
-    위와 같이 되어있는것을
+    위와 같이 되어있는것 있는 것을 주석해제하고
 
-    <!-- # listener port로 검색해서 아래 수정하면됨 -->
     # listener port-number [ip address/host name/unix socket path]
     listener 1883
-    으로 수정 <!-- 아랫부분 주석만 해제하고 1883을 추가하면됨 -->
-
+    으로 수정
+    <!-- 아랫부분 주석만 해제하고 1883을 추가하면됨 => 사실 주석해제없이 'listener 1883' 값만 넣어주면 상관없음-->
     
 <!-- allow_anoymous 수정 -->
-    allow_anonymous false
+    # allow_anonymous false
     allow_anonymous false를 true로 수정 (모든 접속 허용)
     
+
+<!-- 이후 재부팅 -->
+    cmd에 명령어를 사용가능하다면 
+    시스템 환경변수를 추가하고 
+        net stop mosquitto
+        net start mosquitto
+
+    혹은 환경변수 추가없이
+    cmd에서 mosquitto 폴더로 이동 후
+        net stop mosquitto
+        net start mosquitto
+    위와 같이 재시작 해줄 경우 재부팅 안해도됨
+
+<!-- 이후 mqtt를 사용할 기기에서 ipconfig을 통해 mosquitto를 설치한 컴퓨터의 ip를 넣어주면됨 -->
+
+
+
 
 <시스템 환경변수 - Path에 새로만들기>
 C:\Program Files\mosquitto
