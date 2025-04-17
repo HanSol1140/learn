@@ -1,4 +1,5 @@
+// Animal.java
 package main;
-
-public class Animal {
+public interface Animal {
+    void cry();
 }
