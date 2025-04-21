@@ -1,4 +1,6 @@
 // Task.java
+import java.util.Objects;
+
 public class Task {
     private String description; // 할 일 설명
     private boolean completed; // 완료 여부
@@ -44,5 +46,19 @@ public class Task {
 
         return "할 일 - " + description + "(완료 : " +  (completed? "Y" : "N") + ")";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return completed == task.completed && Objects.equals(description, task.description);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(description, completed);
+    }
+
 
 }
