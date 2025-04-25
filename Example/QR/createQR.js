@@ -11,7 +11,7 @@ const path = require('path');
 // QR 코드에 넣을 데이터
 // 전화번호 설정
 const phoneNumber = '01031277711';
-const telLink = `tel:01031277711`;
+const telLink = `tel:07040994358`;
 // URL 
 const URL1 = 'https://nanonix.help?tn=1';
 const URL2 = 'https://nanonix.help?tn=2';
@@ -46,21 +46,39 @@ const URL3 = 'https://nanonix.help?tn=3';
 // 2. 도트크기 컨트롤
 // 복원율
 // L<M<Q<H
+
+
+const orderData = [
+  {
+      option: {
+          temperature: "Ice",
+          iceLevel: "보통",
+          size: "Tall",
+          brewing: "에스프레소"
+      },
+      price: 4000
+  }
+  // 여기에 다른 주문 항목이 있다면 추가될 수 있습니다.
+];
+const orderDataString = JSON.stringify(orderData);
+
+
 // QR 코드 생성 (SVG 형식)
-let qrCode = QRgenerator(20, 'L');
-qrCode.addData(URL1);
+// 4 => 20 숫자가 커질수록 넣을수잇는 데이터가 커짐(픽셀이 많아짐)
+let qrCode = QRgenerator(8, 'L');
+qrCode.addData(orderDataString);
 qrCode.make();
 let qrSvg = qrCode.createSvgTag({});
 
 // SVG를 PNG로 변환하고 너비 지정하여 파일로 저장
 const svgBuffer = Buffer.from(qrSvg);
-const outputPath = 'phoneQRCode.png'; // PNG 파일 이름
+const filePath = path.join(__dirname, "QR.png");
 const width = 500; // 원하는 이미지의 너비 (픽셀 단위)
 
 sharp(svgBuffer)
   .png()
   .resize(width) // 너비 지정, 높이는 자동 조정
-  .toFile(outputPath, (err, info) => {
+  .toFile(filePath, (err, info) => {
     if (err) {
       console.error('QR 코드 생성 중 오류가 발생했습니다:', err);
     } else {
