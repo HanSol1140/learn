@@ -19,12 +19,14 @@ nvm 설치 확인
 
 <버전관리>
     최신 LTS 버전 설치하기
-        nvm install --lts
+    
+        nvm ls-remote --lts <!-- 버전확인 -->
+        nvm install 20 --lts <!-- 20LTS 설치 -->
     특정 버전 설치하기
         현재 설치가능한 버전 확인
         nvm ls-remote
         nvm install 20.10.0
-
+        nvm alias default 20
 
     설치된 node 버전 확인
         nvm list

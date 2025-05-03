@@ -25,11 +25,14 @@ nano /opt/homebrew/etc/mosquitto/mosquitto.conf
 
 
 <1. 비밀번호 설정>
+    첫 사용자 등록
+    cd /opt/homebrew/etc/mosquitto
     mosquitto_passwd -c /opt/homebrew/etc/mosquitto/passwd your_username
-    mosquitto_passwd -c /opt/homebrew/etc/mosquitto/passwd nanonix
+    mosquitto_passwd -c /opt/homebrew/etc/mosquitto/auth.txt nanonix
     -c: 새 비밀번호 파일을 생성합니다. 기존 파일이 있으면 덮어씁니다.
     your_username: 원하는 사용자 이름으로 대체합니다.
     비밀번호 두번입력
+    <!-- 추가 사용자 등록시 -c만 빼면 됩니다. (-c => 파일생성) -->
 <2. 비밀번호 사용 설정>
     nano /opt/homebrew/etc/mosquitto/mosquitto.conf
     설정 파일에 아래 내용을 추가

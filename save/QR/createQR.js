@@ -42,7 +42,7 @@ const URL2 = 'https://nanonix.help?tn=2';
 // ==================================================================
 // QR 코드 생성 (SVG 형식)
 // L > 
-let qrCode = QRgenerator(20, 'L'); // cellSize, 복원률, 낮을수록 도트가 크고 적은데이터가 들어감
+let qrCode = QRgenerator(8, 'M'); // cellSize, 복원률, 낮을수록 도트가 크고 적은데이터가 들어감
 qrCode.addData(telLink);
 qrCode.make();
 let qrSvg = qrCode.createSvgTag({});
@@ -50,7 +50,7 @@ let qrSvg = qrCode.createSvgTag({});
 // SVG를 PNG로 변환하고 너비 지정하여 파일로 저장
 const svgBuffer = Buffer.from(qrSvg);
 const outputPath = './QR.png'; // PNG 파일 이름
-const width = 500; // 원하는 이미지의 너비 (픽셀 단위)
+const width = 600; // 원하는 이미지의 너비 (픽셀 단위)
 
 sharp(svgBuffer)
   .png()

@@ -11,7 +11,7 @@ const path = require('path');
 // QR 코드에 넣을 데이터
 // 전화번호 설정
 const phoneNumber = '01031277711';
-const telLink = `tel:07040994358`;
+const telLink = `tel:07050809109`;
 // URL 
 const URL1 = 'https://nanonix.help?tn=1';
 const URL2 = 'https://nanonix.help?tn=2';
@@ -66,7 +66,7 @@ const orderDataString = JSON.stringify(orderData);
 // QR 코드 생성 (SVG 형식)
 // 4 => 20 숫자가 커질수록 넣을수잇는 데이터가 커짐(픽셀이 많아짐)
 let qrCode = QRgenerator(8, 'L');
-qrCode.addData(orderDataString);
+qrCode.addData(telLink);
 qrCode.make();
 let qrSvg = qrCode.createSvgTag({});
 

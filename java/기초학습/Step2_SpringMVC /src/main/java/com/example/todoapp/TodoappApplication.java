@@ -1,7 +1,7 @@
 // TodoappApplication.java
 package com.example.todoapp;
 
-import com.example.Task;
+import com.example.model.Task;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -1,9 +1,9 @@
-<모스키토 다운로드 & 설치>
+<모스키토 다운로드 & 설치/>
 https://mosquitto.org/download/
 해당 페이지에서 모스키토 다운로드 후 설치
 
-
-<mosquitto.conf 설정>
+<Window/>
+<mosquitto.conf 설정/>
 WINDOW의 경우 C://Program Files/mosquitto/mosquitto.conf 파일 수정
 
 <!-- listener 수정 -->
@@ -39,15 +39,15 @@ WINDOW의 경우 C://Program Files/mosquitto/mosquitto.conf 파일 수정
 
 
 
-<시스템 환경변수 - Path에 새로만들기>
+<시스템 환경변수 - Path에 새로만들기/>
 C:\Program Files\mosquitto
 <!-- 아무튼 모스키토 폴더경로로 -->
 
-<시작, 재시작>
+<시작, 재시작/>
 net stop mosquitto
 net start mosquitto
 
-<WSS 연결>
+<WSS 연결/>
     mosquitto.conf 수정
     listener 1883
     listener 8083
@@ -63,4 +63,62 @@ net start mosquitto
      -->
 
      
-</WSS>
+<모스키토 비밀번호 설정/>
+    모스키토 설치 경로로 이동
+    ex)cd "C:\Program Files\mosquitto"
+
+    새 파일로 만들면서 첫 번째 사용자 추가: -c = 파일생성
+    mosquitto_passwd -c auth.txt 사용자이름
+    비밀번호 입력, 확인
+
+    추가 사용자 등록시 c 빼고 등록 
+
+    mosquitto_passwd auth.txt 사용자이름2
+
+<mosquitto.conf수정>
+    <!-- C://Program Files/mosquitto/mosquitto.conf 파일 수정 -->
+    allow_anonymous false <!-- 모든 접속 허용 안함 -->
+    password_file /opt/homebrew/etc/mosquitto/auth.txt <!-- 인증 파일 경로 -->
+
+<MAC Book>
+
+    <홈브루 설치>
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    <모스키토 설치>
+        brew install mosquitto
+
+    <모스키토 버전 확인>
+        mosquitto -v
+
+    <모스키토 실행>
+        brew services start mosquitto
+    <모스키토 종료>
+        brew services stop mosquitto
+    <모스키토 재시작>
+        brew services restart mosquitto
+
+
+    <모스키토 수동 실행(테스트용)>
+        mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf
+
+    <홈브루 모스키토 경로확인>
+        ls /opt/homebrew/etc/mosquitto
+    <설정파일 편집>
+        nano /opt/homebrew/etc/mosquitto/mosquitto.conf
+
+
+    <1. 비밀번호 설정>
+        첫 사용자 등록
+        cd /opt/homebrew/etc/mosquitto
+        mosquitto_passwd -c /opt/homebrew/etc/mosquitto/passwd your_username
+        mosquitto_passwd -c /opt/homebrew/etc/mosquitto/auth.txt nanonix
+        -c: 새 비밀번호 파일을 생성합니다. 기존 파일이 있으면 덮어씁니다.
+        your_username: 원하는 사용자 이름으로 대체합니다.
+        비밀번호 두번입력
+        <!-- 추가 사용자 등록시 -c만 빼면 됩니다. (-c => 파일생성) -->
+    <2. 비밀번호 사용 설정>
+        nano /opt/homebrew/etc/mosquitto/mosquitto.conf
+        설정 파일에 아래 내용을 추가
+        allow_anonymous false
+        password_file /opt/homebrew/etc/mosquitto/passwd
